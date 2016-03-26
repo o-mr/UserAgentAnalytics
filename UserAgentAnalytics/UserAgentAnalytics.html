@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>User Agent Analytics</title>
+        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" media="all" href="css/UserAgentAnalytics.css">
+        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+        <script src="js/Chart.min.js"></script>
+        <script src="js/UserAgentAnalytics.js"></script>
+    </head>
+    <body>
+      <div id="drop_zone">
+        <main class="mdl-layout__content">
+          <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+             <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">User Agent Analytics</span>
+             </div>
+          </header>
+          <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+             <div class="mdl-tabs__tab-bar">
+                 <a href="#tab-os" class="mdl-tabs__tab is-active">OS</a>
+                 <a href="#tab-browser" class="mdl-tabs__tab">Browser</a>
+                 <a href="#tab-comb" class="mdl-tabs__tab">OS + Browser</a>
+              </div>
+              <div class="mdl-tabs__panel is-active" id="tab-os">
+                <div class="mdl-grid">
+                  <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
+                    <span class="mdl-layout-title">Summary</span>
+                  </div>
+                  <div class="mdl-cell mdl-cell--5-col mdl-cell--10-col-tablet">
+                    <canvas id="os_pie" height="400" width="400"></canvas>
+                  </div>
+                  <div class="mdl-cell mdl-cell--5-col mdl-cell--10-col-tablet">
+                    <ul id="os_share_list"></ul>
+                  </div>
+                  <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
+                    <span class="mdl-layout-title">Transition</span>
+                  </div>
+                  <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
+                    <canvas id="os_line" height="400" width="800"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="mdl-tabs__panel" id="tab-browser">
+                <div class="mdl-grid">
+                  <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
+                    <span class="mdl-layout-title">Summary</span>
+                  </div>
+                  <div class="mdl-cell mdl-cell--5-col mdl-cell--10-col-tablet">
+                    <canvas id="browser_pie" height="400" width="400"></canvas>
+                  </div>
+                  <div class="mdl-cell mdl-cell--5-col mdl-cell--10-col-tablet">
+                    <ul id="browser_share_list"></ul>
+                  </div>
+                  <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
+                    <span class="mdl-layout-title">Transition</span>
+                  </div>
+                  <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
+                    <canvas id="browser_line" height="400" width="800"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="mdl-tabs__panel" id="tab-comb">
+                <div class="mdl-grid">
+                  <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
+                    <span class="mdl-layout-title">Summary</span>
+                  </div>
+                  <div class="mdl-cell mdl-cell--5-col mdl-cell--10-col-tablet">
+                    <canvas id="comb_pie" height="400" width="400"></canvas>
+                  </div>
+                  <div class="mdl-cell mdl-cell--5-col mdl-cell--10-col-tablet">
+                    <ul id="comb_share_list"></ul>
+                  </div>
+                  <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
+                    <span class="mdl-layout-title">Transition</span>
+                  </div>
+                  <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
+                    <canvas id="comb_line" height="400" width="800"></canvas>
+                  </div>
+                </div>
+              </div>
+           </div>
+  	    </main>
+      </div>
+    </body>
+</html>
