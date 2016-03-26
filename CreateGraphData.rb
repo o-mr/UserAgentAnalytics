@@ -54,6 +54,16 @@ class Matrix
     }
   end
 
+  def output_csv file_name
+    open(file_name, "w") {|f|
+      f.puts("," + @col_label.join(",") + ",total")
+      @ary.each_with_index{|row, index|
+        label = index < @row_label.size ? @row_label[index] : "total"
+        f.puts(label + "," + row.join(","))
+      }
+    }
+  end
+
 end
 
 file_pattern = "./middle/*_analyzed.json"
@@ -93,6 +103,10 @@ line = {
   browser:browser_mtx.create_line_data,
   comb:   comb_mtx.create_line_data,
 }
+
+os_mtx.output_csv "os_analize.csv"
+browser_mtx.output_csv "browser_analize.csv"
+comb_mtx.output_csv "comb_analize.csv"
 
 analytics = {pie:pie, line:line}
 open("./graphData.json", "w") {|f|
