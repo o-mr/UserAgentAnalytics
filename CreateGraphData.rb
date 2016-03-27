@@ -33,7 +33,7 @@ class Matrix
       access = @ary[@row_label.size][y]
       total  = @ary[@row_label.size][@col_label.size]
       pie_data.push({label:name, value:(access*100.0/total).round(2), access:access})
-    }.sort{|a, b|b[:value] <=> a[:value]}
+    }
   end
 
   def create_line_data
@@ -52,6 +52,18 @@ class Matrix
         })
       }
     }
+  end
+
+  def sort!
+    @col_label.sort_by!.with_index{|col, y|
+      -@ary[@row_label.size][y]
+    }
+    @ary.each{|row|
+      row.sort_by!.with_index{|col, y|
+        @col_label.size > y ? -@ary[@row_label.size][y] : 0
+      }
+    }
+    self
   end
 
   def output_csv file_name
@@ -91,6 +103,10 @@ Dir.glob(file_pattern).each{|json|
   browser_mtx.add_cols(middle["date"], middle["browser"])
   comb_mtx.add_cols(middle["date"], middle["comb"])
 }
+
+os_mtx.sort!
+browser_mtx.sort!
+comb_mtx.sort!
 
 pie = {
   total:  os_mtx.get_total_access,

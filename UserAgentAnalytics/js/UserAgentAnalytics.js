@@ -6,7 +6,7 @@ var COLORS = [
   "#E91E63",
   "#673AB7",
   "#009688",
-]
+];
 
 var options = {
     // 値を区切る線の表示
@@ -39,8 +39,8 @@ var options = {
 
 
 window.addEventListener('load', function() {
-  window.pie = []
-  window.line = []
+  window.pie = [];
+  window.line = [];
 
   handleFileSelect = function(evt) {
     evt.stopPropagation();
@@ -58,13 +58,13 @@ window.addEventListener('load', function() {
       drawLine(analytics.line, "comb");
     };
     reader.readAsText(file);
-  }
+  };
 
   handleDragOver = function(evt) {
     evt.stopPropagation();
     evt.preventDefault();
     evt.dataTransfer.dropEffect = 'copy';
-  }
+  };
 
   var dropZone = document.getElementById('drop_zone');
   dropZone.addEventListener('dragover', handleDragOver,   false);
@@ -96,7 +96,7 @@ window.addEventListener('load', function() {
 
     if (window.pie[type]) window.pie[type].clear();
     window.pie[type] = new Chart(document.getElementById(type + "_pie").getContext("2d")).Pie(data, options);
-  }
+  };
 
   drawLine = function(line, type) {
     data = line[type];
@@ -115,6 +115,6 @@ window.addEventListener('load', function() {
     });
     if (window.line[type]) window.pie[type].clear();
     window.line[type] = new Chart(document.getElementById(type + "_line").getContext("2d")).Line(data);
-  }
+  };
 
 });

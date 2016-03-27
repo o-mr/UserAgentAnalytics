@@ -1,88 +1,101 @@
 <!doctype html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>User Agent Analytics</title>
-        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" media="all" href="css/UserAgentAnalytics.css">
-        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
-        <script src="js/Chart.min.js"></script>
-        <script src="js/UserAgentAnalytics.js"></script>
-    </head>
-    <body>
-      <div id="drop_zone">
-        <main class="mdl-layout__content">
-          <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-             <div class="mdl-layout__header-row">
-                <span class="mdl-layout-title">User Agent Analytics</span>
-             </div>
-          </header>
-          <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-             <div class="mdl-tabs__tab-bar">
-                 <a href="#tab-os" class="mdl-tabs__tab is-active">OS</a>
-                 <a href="#tab-browser" class="mdl-tabs__tab">Browser</a>
-                 <a href="#tab-comb" class="mdl-tabs__tab">OS + Browser</a>
-              </div>
-              <div class="mdl-tabs__panel is-active" id="tab-os">
-                <div class="mdl-grid">
-                  <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
-                    <span class="mdl-layout-title">Summary</span>
-                  </div>
-                  <div class="mdl-cell mdl-cell--5-col mdl-cell--10-col-tablet">
-                    <canvas id="os_pie" height="400" width="400"></canvas>
-                  </div>
-                  <div class="mdl-cell mdl-cell--5-col mdl-cell--10-col-tablet">
-                    <ul id="os_share_list"></ul>
-                  </div>
-                  <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
-                    <span class="mdl-layout-title">Transition</span>
-                  </div>
-                  <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
-                    <canvas id="os_line" height="400" width="800"></canvas>
-                  </div>
-                </div>
-              </div>
-              <div class="mdl-tabs__panel" id="tab-browser">
-                <div class="mdl-grid">
-                  <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
-                    <span class="mdl-layout-title">Summary</span>
-                  </div>
-                  <div class="mdl-cell mdl-cell--5-col mdl-cell--10-col-tablet">
-                    <canvas id="browser_pie" height="400" width="400"></canvas>
-                  </div>
-                  <div class="mdl-cell mdl-cell--5-col mdl-cell--10-col-tablet">
-                    <ul id="browser_share_list"></ul>
-                  </div>
-                  <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
-                    <span class="mdl-layout-title">Transition</span>
-                  </div>
-                  <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
-                    <canvas id="browser_line" height="400" width="800"></canvas>
-                  </div>
-                </div>
-              </div>
-              <div class="mdl-tabs__panel" id="tab-comb">
-                <div class="mdl-grid">
-                  <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
-                    <span class="mdl-layout-title">Summary</span>
-                  </div>
-                  <div class="mdl-cell mdl-cell--5-col mdl-cell--10-col-tablet">
-                    <canvas id="comb_pie" height="400" width="400"></canvas>
-                  </div>
-                  <div class="mdl-cell mdl-cell--5-col mdl-cell--10-col-tablet">
-                    <ul id="comb_share_list"></ul>
-                  </div>
-                  <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
-                    <span class="mdl-layout-title">Transition</span>
-                  </div>
-                  <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
-                    <canvas id="comb_line" height="400" width="800"></canvas>
-                  </div>
-                </div>
-              </div>
-           </div>
-  	    </main>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>User Agent Analytics</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.deep_purple-pink.min.css">
+  <link rel="stylesheet" media="all" href="css/UserAgentAnalytics.css">
+</head>
+
+<body class="mdl-uaa mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" id="drop_zone">
+    <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+      <div class="mdl-layout--large-screen-only mdl-layout__header-row">
       </div>
-    </body>
+      <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        <h3>User Agent Analytics</h3>
+      </div>
+      <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+      </div>
+      <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
+        <a href="#tab-os" class="mdl-layout__tab is-active">OS</a>
+        <a href="#tab-browser" class="mdl-layout__tab">Browser</a>
+        <a href="#tab-comb" class="mdl-layout__tab">OS + Browser</a>
+      </div>
+    </header>
+    <main class="mdl-layout__content">
+      <div class="mdl-layout__tab-panel is-active" id="tab-os">
+        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--12-col">
+            <h4>Summary</h4>
+          </div>
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--6-col">
+            <canvas id="os_pie" height="400" width="400"></canvas>
+          </div>
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--6-col">
+            <ul id="os_share_list"></ul>
+          </div>
+        </section>
+        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--12-col">
+            <h4>Transition</</h4>
+            <div class="mdl-card__supporting-text mdl-cell mdl-cell--12-col">
+              <canvas id="os_line" height="400" width="960"></canvas>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="mdl-layout__tab-panel" id="tab-browser">
+        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--12-col">
+            <h4>Summary</h4>
+          </div>
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--6-col">
+            <canvas id="browser_pie" height="400" width="400"></canvas>
+          </div>
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--6-col">
+            <ul id="browser_share_list"></ul>
+          </div>
+        </section>
+        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--12-col">
+            <h4>Transition</</h4>
+            <div class="mdl-card__supporting-text mdl-cell mdl-cell--12-col">
+              <canvas id="browser_line" height="400" width="960"></canvas>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="mdl-layout__tab-panel" id="tab-comb">
+        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--12-col">
+            <h4>Summary</h4>
+          </div>
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--6-col">
+            <canvas id="comb_pie" height="400" width="400"></canvas>
+          </div>
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--6-col">
+            <ul id="comb_share_list"></ul>
+          </div>
+        </section>
+        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--12-col">
+            <h4>Transition</</h4>
+            <div class="mdl-card__supporting-text mdl-cell mdl-cell--12-col">
+              <canvas id="comb_line" height="400" width="960"></canvas>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+  <script src="js/Chart.min.js"></script>
+  <script src="js/UserAgentAnalytics.js"></script>
+</body>
+
 </html>
