@@ -4,8 +4,13 @@ var COLORS = [
   "#4CAF50",
   "#FFC107",
   "#E91E63",
-  "#673AB7",
+  "#3F51B5",
   "#009688",
+  "#FF5722",
+  "#9C27B0",
+  "#00BCD4",
+  "#CDDC39",
+  "#795548"
 ];
 
 var options = {
@@ -39,6 +44,7 @@ var options = {
 
 
 window.addEventListener('load', function() {
+  window.tabs = ["os", "browser", "comb"];
   window.pie = [];
   window.line = [];
 
@@ -49,13 +55,11 @@ window.addEventListener('load', function() {
     var reader = new FileReader();
     reader.onload = function(e) {
       var analytics = JSON.parse(reader.result);
-      drawPie(analytics.pie, "os");
-      drawPie(analytics.pie, "browser");
-      drawPie(analytics.pie, "comb");
-
-      drawLine(analytics.line, "os");
-      drawLine(analytics.line, "browser");
-      drawLine(analytics.line, "comb");
+      window.tabs.forEach(function(name){
+        drawPie(analytics.pie, name);
+        writeRanking(analytics.pie, name);
+        drawLine(analytics.line, name);
+      });
     };
     reader.readAsText(file);
   };
@@ -72,36 +76,37 @@ window.addEventListener('load', function() {
 
   drawPie = function(pie, type) {
     var data  = pie[type];
-    var ul = document.getElementById(type + "_share_list");
-    while (ul.firstChild) ul.removeChild(ul.firstChild);
-    var sum = 0.0;
+    var other = {label:"other", access:0, color:"#607D8B"};
     data = data.filter(function(ele, i) {
       ele.color = COLORS[i % COLORS.length];
-      if (ele.value < 0.5) return false;
-      sum += ele.access;
+      if (ele.value < 0.5) {
+        other.access += ele.access;
+        return false;
+      }
       return true;
     });
-    data.push({
-      label:"other",
-      value:Math.round((pie.total - sum) * 10000 / pie.total) / 100,
-      access:pie.total - sum,
-      color:"#607D8B"
-    });
+    other.value = Math.round(other.access * 10000.0 / pie.total) / 100;
+    data.push(other);
+    if (window.pie[type]) window.pie[type].clear();
+    window.pie[type] = new Chart(document.getElementById(type + "_pie").getContext("2d")).Pie(data, options);
+    pie[type] = data;
+  };
+
+  writeRanking = function(pie, type) {
+    var data  = pie[type];
+    var ul = document.getElementById(type + "_share_list");
+    while (ul.firstChild) ul.removeChild(ul.firstChild);
     data.forEach(function(ele){
       var li = document.createElement("li");
       li.innerHTML = ele.label + " : " + ele.value + "% (" + ele.access + " Access)";
       li.style.color = ele.color;
       ul.appendChild(li);
     });
-
-    if (window.pie[type]) window.pie[type].clear();
-    window.pie[type] = new Chart(document.getElementById(type + "_pie").getContext("2d")).Pie(data, options);
   };
 
   drawLine = function(line, type) {
     data = line[type];
-    var i = 0;
-    data.datasets = data.datasets.filter(function(ele) {
+    data.datasets = data.datasets.filter(function(ele, i) {
       ele.fillColor = "rgba(96, 125, 139, 0)";
       ele.strokeColor = COLORS[i % COLORS.length];
       ele.pointColor = COLORS[i % COLORS.length];
@@ -109,9 +114,7 @@ window.addEventListener('load', function() {
       ele.pointHighlightFill = "#fff";
       ele.pointHighlightStroke = COLORS[i % COLORS.length];
       var ave = ele.data.reduce(function(prev, current) {return prev+current;}) / ele.data.length;
-      if (ave < 0.5) return false;
-      i++;
-      return true;
+      return ave >= 0.5;
     });
     if (window.line[type]) window.pie[type].clear();
     window.line[type] = new Chart(document.getElementById(type + "_line").getContext("2d")).Line(data);

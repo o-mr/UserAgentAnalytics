@@ -104,9 +104,9 @@ Dir.glob(file_pattern).each{|json|
   comb_mtx.add_cols(middle["date"], middle["comb"])
 }
 
-os_mtx.sort!
-browser_mtx.sort!
-comb_mtx.sort!
+os_mtx.sort!.output_csv "os_analytics.csv"
+browser_mtx.sort!.output_csv "browser_analytics.csv"
+comb_mtx.sort!.output_csv "comb_analytics.csv"
 
 pie = {
   total:  os_mtx.get_total_access,
@@ -119,10 +119,6 @@ line = {
   browser:browser_mtx.create_line_data,
   comb:   comb_mtx.create_line_data,
 }
-
-os_mtx.output_csv "os_analize.csv"
-browser_mtx.output_csv "browser_analize.csv"
-comb_mtx.output_csv "comb_analize.csv"
 
 analytics = {pie:pie, line:line}
 open("./graphData.json", "w") {|f|

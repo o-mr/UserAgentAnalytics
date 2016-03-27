@@ -4,10 +4,11 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" sizes="48x48" href="images/chart_black.png">
   <title>User Agent Analytics</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.deep_purple-pink.min.css">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.blue_grey-blue.min.css">
   <link rel="stylesheet" media="all" href="css/UserAgentAnalytics.css">
 </head>
 
@@ -15,11 +16,7 @@
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" id="drop_zone">
     <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
       <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-      </div>
-      <div class="mdl-layout--large-screen-only mdl-layout__header-row">
         <h3>User Agent Analytics</h3>
-      </div>
-      <div class="mdl-layout--large-screen-only mdl-layout__header-row">
       </div>
       <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
         <a href="#tab-os" class="mdl-layout__tab is-active">OS</a>
@@ -33,10 +30,10 @@
           <div class="mdl-card__supporting-text mdl-cell mdl-cell--12-col">
             <h4>Summary</h4>
           </div>
-          <div class="mdl-card__supporting-text mdl-cell mdl-cell--6-col">
-            <canvas id="os_pie" height="400" width="400"></canvas>
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--7-col">
+            <canvas id="os_pie" height="400" width="480"></canvas>
           </div>
-          <div class="mdl-card__supporting-text mdl-cell mdl-cell--6-col">
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--5-col">
             <ul id="os_share_list"></ul>
           </div>
         </section>
@@ -54,10 +51,10 @@
           <div class="mdl-card__supporting-text mdl-cell mdl-cell--12-col">
             <h4>Summary</h4>
           </div>
-          <div class="mdl-card__supporting-text mdl-cell mdl-cell--6-col">
-            <canvas id="browser_pie" height="400" width="400"></canvas>
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--7-col">
+            <canvas id="browser_pie" height="400" width="480"></canvas>
           </div>
-          <div class="mdl-card__supporting-text mdl-cell mdl-cell--6-col">
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--5-col">
             <ul id="browser_share_list"></ul>
           </div>
         </section>
@@ -75,10 +72,10 @@
           <div class="mdl-card__supporting-text mdl-cell mdl-cell--12-col">
             <h4>Summary</h4>
           </div>
-          <div class="mdl-card__supporting-text mdl-cell mdl-cell--6-col">
-            <canvas id="comb_pie" height="400" width="400"></canvas>
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--7-col">
+            <canvas id="comb_pie" height="400" width="480"></canvas>
           </div>
-          <div class="mdl-card__supporting-text mdl-cell mdl-cell--6-col">
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--5-col">
             <ul id="comb_share_list"></ul>
           </div>
         </section>
