@@ -22,6 +22,7 @@
         <a href="#tab-os" class="mdl-layout__tab is-active">OS</a>
         <a href="#tab-browser" class="mdl-layout__tab">Browser</a>
         <a href="#tab-comb" class="mdl-layout__tab">OS + Browser</a>
+        <a href="#tab-status" class="mdl-layout__tab">Status</a>
       </div>
     </header>
     <main class="mdl-layout__content">
@@ -84,6 +85,27 @@
             <h4>Transition</</h4>
             <div class="mdl-card__supporting-text mdl-cell mdl-cell--12-col">
               <canvas id="comb_line" height="400" width="960"></canvas>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="mdl-layout__tab-panel" id="tab-status">
+        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--12-col">
+            <h4>Summary</h4>
+          </div>
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--7-col">
+            <canvas id="status_pie" height="400" width="480"></canvas>
+          </div>
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--5-col">
+            <ul id="status_share_list"></ul>
+          </div>
+        </section>
+        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+          <div class="mdl-card__supporting-text mdl-cell mdl-cell--12-col">
+            <h4>Transition</</h4>
+            <div class="mdl-card__supporting-text mdl-cell mdl-cell--12-col">
+              <canvas id="status_line" height="400" width="960"></canvas>
             </div>
           </div>
         </section>

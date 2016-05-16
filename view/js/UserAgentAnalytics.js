@@ -44,7 +44,7 @@ var options = {
 
 
 window.addEventListener('load', function() {
-  window.tabs = ["os", "browser", "comb"];
+  window.tabs = ["os", "browser", "comb", "status"];
   window.pie = [];
   window.line = [];
 
@@ -85,8 +85,10 @@ window.addEventListener('load', function() {
       }
       return true;
     });
-    other.value = Math.round(other.access * 10000.0 / pie.total) / 100;
-    data.push(other);
+    if (other.access > 0) {
+      other.value = Math.round(other.access * 10000.0 / pie.total) / 100;
+      data.push(other);
+    }
     if (window.pie[type]) window.pie[type].clear();
     window.pie[type] = new Chart(document.getElementById(type + "_pie").getContext("2d")).Pie(data, options);
     pie[type] = data;
