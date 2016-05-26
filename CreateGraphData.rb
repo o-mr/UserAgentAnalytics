@@ -105,10 +105,11 @@ Dir.glob(file_pattern).each do |json|
   status_mtx.add_cols(middle['date'], middle['status'])
 end
 
-os_mtx.sort!.output_csv 'os_analytics.csv'
-browser_mtx.sort!.output_csv 'browser_analytics.csv'
-comb_mtx.sort!.output_csv 'comb_analytics.csv'
-status_mtx.sort!.output_csv 'status_analytics.csv'
+Dir.mkdir('./output') unless FileTest.exist?('./output')
+os_mtx.sort!.output_csv './output/os_analytics.csv'
+browser_mtx.sort!.output_csv './output/browser_analytics.csv'
+comb_mtx.sort!.output_csv './output/comb_analytics.csv'
+status_mtx.sort!.output_csv './output/status_analytics.csv'
 
 pie = {
   total:  os_mtx.total_access,
@@ -125,6 +126,6 @@ line = {
 }
 
 analytics = { pie: pie, line: line }
-open('./graphData.json', 'w') do |f|
+open('./output/graphData.json', 'w') do |f|
   f.puts(JSON.generate(analytics))
 end
